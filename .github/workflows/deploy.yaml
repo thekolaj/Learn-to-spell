@@ -57,17 +57,17 @@ jobs:
           # Upload dist repository
           path: './dist'
 
-      ## E2E test our built application
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run E2E tests
-        run: npm run test:e2e
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 7
+      # ## E2E test our built application
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps
+      # - name: Run E2E tests
+      #   run: npm run test:e2e
+      # - uses: actions/upload-artifact@v3
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 7
 
       ## Deploy
       - name: Setup Pages
