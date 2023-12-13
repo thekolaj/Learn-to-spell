@@ -1,35 +1,59 @@
 @import url('./base.css');
 
 #app {
+  width: fit-content;
   max-width: 1280px;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
 }
 
+header,
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: var(--x-large);
+  margin: 0.5rem;
+}
+
+button,
 a,
-.green {
+input {
+  transition: all 0.5s ease;
+  cursor: pointer;
+  font-size: var(--v-large);
+  color: var(--button-color);
+  background-color: var(--button-background);
+  border: 2px solid var(--button-color);
+  border-radius: var(--large);
+  padding: var(--medium);
+  margin: var(--small);
+}
+
+a {
   text-decoration: none;
-  color: hsl(160deg 100% 37% / 100%);
-  transition: 0.4s;
-  padding: 3px;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsl(160deg 100% 37% / 20%);
-  }
+input:focus {
+  outline: none;
+  box-shadow: 0 0 10px;
 }
 
-@media (width >= 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+button:hover:not(:disabled),
+a:hover {
+  text-shadow: 0 0 10px;
+  box-shadow: 0 0 10px;
+}
+
+svg {
+  height: 1.4rem;
 }
