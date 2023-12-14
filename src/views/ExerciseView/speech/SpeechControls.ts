@@ -1,21 +1,22 @@
 import { ref } from 'vue'
-
-export const voiceList = speechSynthesis.getVoices()
+import { speechSettings, voiceList } from './SpeechSettings'
 
 export const playing = ref(false)
+export const playPreview = ref(true)
 
-export function playPauseText(
-  text: string,
-  speed: number,
-  voice: number,
-  delay: boolean = false,
-): void {
+export function playPauseText(text: string): void {
   if (speechSynthesis.paused) {
     speechSynthesis.resume()
   } else if (speechSynthesis.speaking) {
     speechSynthesis.pause()
   } else {
-    speechSynthesis.speak(createUtterance(text, speed, voice, delay))
+    if (playPreview.value) {
+      speechSynthesis.speak(createUtterance(text, speechSettings.value.speedPreview))
+      playPreview.value = false
+    }
+    speechSynthesis.speak(
+      createUtterance(text, speechSettings.value.speed, speechSettings.value.delay),
+    )
   }
 }
 
@@ -23,11 +24,11 @@ export function stopText() {
   speechSynthesis.cancel()
 }
 
-function createUtterance(text: string, speed: number, voice: number, delay: boolean) {
+function createUtterance(text: string, speed: number, delay: boolean = false) {
   const utterance = new SpeechSynthesisUtterance()
   utterance.text = delay === true ? (utterance.text = text.replaceAll(' ', '! ')) : text
   utterance.rate = speed
-  utterance.voice = voiceList[voice]
+  utterance.voice = voiceList.value[speechSettings.value.voiceIndex]
   utterance.onstart = () => {
     playing.value = true
   }

@@ -1,0 +1,50 @@
+{
+  "name": "Misspelled",
+  "description": "Includes words people tend to misspell.",
+  "content": {
+    "misspelled-1": [
+      "I accidentally dropped my phone.",
+      "They're going to their friend's house.",
+      "He definitely wants to come to the party.",
+      "The restaurant serves delicious spaghetti.",
+      "She received a beautiful bouquet of flowers.",
+      "I recommend this book to everyone.",
+      "We're excited about the upcoming concert.",
+      "He's a conscientious worker.",
+      "The dessert menu has a variety of options.",
+      "She believes in the power of positive thinking.",
+      "I'm embarrassed by my spelling mistakes.",
+      "The professor explained the concept clearly.",
+      "We missed the opportunity to meet him.",
+      "The atmosphere in the room was awkward.",
+      "He is determined to succeed in his career.",
+      "She accidentally spilled coffee on the table.",
+      "The weather is unpredictable in spring.",
+      "They're preparing for the upcoming exam.",
+      "I apologize for any inconvenience caused.",
+      "The entrepreneur achieved great success."
+    ],
+    "misspelled-2": [
+      "I received a piece of advice from my friend.",
+      "He accidentally deleted his important files.",
+      "The restaurant offers a variety of appetizers.",
+      "She's passionate about pursuing her dreams.",
+      "I recommend trying the delicious lasagna.",
+      "They're planning to visit the Eiffel Tower.",
+      "The professor explained the complicated theorem.",
+      "He has a great sense of humor.",
+      "I'm grateful for your assistance.",
+      "She believes in the importance of education.",
+      "The maintenance crew fixed the malfunctioning equipment.",
+      "We enjoyed the beautiful scenery on our hike.",
+      "He's conscious of his environmental impact.",
+      "The committee made a decision after much discussion.",
+      "She successfully completed the challenging course.",
+      "I accidentally misspelled that word in the email.",
+      "The restaurant environment was comfortable and cozy.",
+      "They're preparing for the annual conference.",
+      "I apologize for any inconvenience caused.",
+      "The entrepreneur achieved remarkable success."
+    ]
+  }
+}

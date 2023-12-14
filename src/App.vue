@@ -11,6 +11,7 @@ const toggleDark = useToggle(isDark)
     <button @click="toggleDark()" type="button" class="mode">
       <span>{{ isDark ? 'Dark' : 'Light' }}</span>
     </button>
+    <h1>Learn to Spell</h1>
   </header>
   <main>
     <RouterView />
