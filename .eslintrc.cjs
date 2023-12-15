@@ -17,9 +17,10 @@ module.exports = {
   },
   rules: {
     // TypeScript does a better job for import checks than ESLint
-    'no-use-before-define': ['error', { 'functions': false }],
+    'no-use-before-define': ['error', { functions: false }],
     'import/no-extraneous-dependencies': 'off',
     'import/extensions': 'off',
+    'no-param-reassign': 'off',
   },
   settings: {
     // to make our custom @ alias resolvable by ESLint import rules
