@@ -1,7 +1,7 @@
 import type { ExerciseData } from '@/components/userDataUtils'
 
 function checkExerciseCompletion(exerciseData: ExerciseData, exerciseLength: number) {
-  return exerciseData.done.length === exerciseLength
+  return exerciseData.done.length >= exerciseLength
 }
 
 function resetExercise(exerciseData: ExerciseData) {
