@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { speechSettings, voiceList } from './SpeechSettings'
+import { speechSettings, voiceList } from './speechSettings'
 
 export const playing = ref(false)
 export const playPreview = ref(true)

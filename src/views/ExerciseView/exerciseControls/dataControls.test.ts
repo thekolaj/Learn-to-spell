@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { ExerciseData } from '@/components/userDataUtils'
-import { answeredCorrect, setNextSentence } from './controls'
+import { answeredCorrect, setNextSentence } from './dataControls'
 
 describe('Next sentence function', () => {
   const exerciseLength = 5

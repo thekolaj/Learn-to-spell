@@ -33,7 +33,7 @@ describe('create strings', () => {
     expect(statsAsString('test-3', exerciseLength, testData)).toBe('🏆x2 1/5')
   })
   it('creates string with missing data', () => {
-    expect(statsAsString('1', exerciseLength, testData)).toBe('0/5')
+    expect(statsAsString(1, exerciseLength, testData)).toBe('0/5')
     expect(statsAsString('thisDoesNotExist', exerciseLength, testData)).toBe('0/5')
   })
 })

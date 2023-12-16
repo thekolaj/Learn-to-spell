@@ -26,7 +26,11 @@ export function completionAsString(sentencesCompleted: number, exerciseLength: n
   return `${sentencesCompleted}/${exerciseLength}`
 }
 
-export function statsAsString(exercise: string, exerciseLength: number, userData: UserData) {
+export function statsAsString(
+  exercise: string | number,
+  exerciseLength: number,
+  userData: UserData,
+) {
   const exerciseData = userData[exercise]
   const sentencesCompleted = exerciseData ? exerciseData.done.length : 0
   let completion = completionAsString(sentencesCompleted, exerciseLength)

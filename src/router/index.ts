@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView/HomeView.vue'
+import { doesExerciseExist } from '@/data'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +15,22 @@ const router = createRouter({
       name: 'exercise',
       component: () => import('@/views/ExerciseView/ExerciseView.vue'),
     },
+    { path: '/:pathMatch(.*)*', redirect: '/' },
   ],
+})
+
+router.beforeEach(to => {
+  if (to.name === 'exercise') {
+    const { category, exercise } = to.params
+    if (
+      typeof category !== 'string' ||
+      typeof exercise !== 'string' ||
+      !doesExerciseExist(category, exercise)
+    ) {
+      return { name: 'home' }
+    }
+  }
+  return true
 })
 
 export default router
