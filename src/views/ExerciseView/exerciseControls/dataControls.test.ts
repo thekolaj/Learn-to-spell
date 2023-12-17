@@ -1,77 +1,77 @@
 import { describe, expect, it } from 'vitest'
-import type { ExerciseData } from '@/components/userDataUtils'
+import type { ExerciseUserData } from '@/components/userDataUtils'
 import { answeredCorrect, setNextSentence } from './dataControls'
 
 describe('Next sentence function', () => {
   const exerciseLength = 5
   it('loops through new empty exercise', () => {
-    const exerciseData: ExerciseData = {
+    const exerciseUserData: ExerciseUserData = {
       current: 0,
       win: 0,
       done: [],
     }
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(1)
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(2)
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(3)
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(4)
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(0)
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(1)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(1)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(2)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(3)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(4)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(0)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(1)
   })
 
   it('skips over completed sentences', () => {
-    const exerciseData: ExerciseData = {
+    const exerciseUserData: ExerciseUserData = {
       current: 0,
       win: 0,
       done: [0, 2, 3],
     }
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(1)
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(4)
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(1)
-    setNextSentence(exerciseData, exerciseLength)
-    expect(exerciseData.current).toBe(4)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(1)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(4)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(1)
+    setNextSentence(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.current).toBe(4)
   })
 
   it('does not work with full array', () => {
-    const exerciseData: ExerciseData = {
+    const exerciseUserData: ExerciseUserData = {
       current: 0,
       win: 0,
       done: [0, 1, 2, 3, 4],
     }
-    expect(() => setNextSentence(exerciseData, exerciseLength)).toThrow()
+    expect(() => setNextSentence(exerciseUserData, exerciseLength)).toThrow()
   })
 })
 
 describe('correct answer function', () => {
-  const exerciseData = {
+  const exerciseUserData = {
     current: 0,
     win: 0,
     done: [],
   }
   const exerciseLength = 5
   it('adds current index to completed and advance index', () => {
-    answeredCorrect(exerciseData, exerciseLength)
-    expect(exerciseData.done).toEqual([0])
-    answeredCorrect(exerciseData, exerciseLength)
-    expect(exerciseData.done).toEqual([0, 1])
-    answeredCorrect(exerciseData, exerciseLength)
-    expect(exerciseData.done).toEqual([0, 1, 2])
-    answeredCorrect(exerciseData, exerciseLength)
-    expect(exerciseData.done).toEqual([0, 1, 2, 3])
+    answeredCorrect(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.done).toEqual([0])
+    answeredCorrect(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.done).toEqual([0, 1])
+    answeredCorrect(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.done).toEqual([0, 1, 2])
+    answeredCorrect(exerciseUserData, exerciseLength)
+    expect(exerciseUserData.done).toEqual([0, 1, 2, 3])
   })
 
   it('resets list and adds a win', () => {
-    expect(exerciseData.win).toBe(0)
-    answeredCorrect(exerciseData, exerciseLength)
-    expect(exerciseData).toEqual({
+    expect(exerciseUserData.win).toBe(0)
+    answeredCorrect(exerciseUserData, exerciseLength)
+    expect(exerciseUserData).toEqual({
       current: 0,
       win: 1,
       done: [],

@@ -18,6 +18,6 @@ export const data: Data = {
   misspelled,
 }
 
-export function doesExerciseExist(category: string, exercise: string) {
-  return Boolean(data?.[category]?.content?.[exercise])
+export function getExerciseData(category: string, exercise: string) {
+  return data?.[category]?.content?.[exercise]
 }

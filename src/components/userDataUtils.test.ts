@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { UserData } from './userDataUtils'
-import { completionAsString, statsAsString, getExerciseData } from './userDataUtils'
+import { completionAsString, statsAsString, getExerciseUserData } from './userDataUtils'
 
 describe('create strings', () => {
   const exerciseLength = 5
@@ -56,18 +56,18 @@ describe('retrieve and modify data', () => {
       done: [0],
     },
   }
-  it('returns existing exercise data', () => {
-    expect(getExerciseData('test-1', testData)).toEqual({
+  it('returns existing exercise user data', () => {
+    expect(getExerciseUserData('test-1', testData)).toEqual({
       current: 4,
       win: 0,
       done: [],
     })
-    expect(getExerciseData('test-2', testData)).toEqual({
+    expect(getExerciseUserData('test-2', testData)).toEqual({
       current: 0,
       win: 0,
       done: [1, 2, 4],
     })
-    expect(getExerciseData('test-3', testData)).toEqual({
+    expect(getExerciseUserData('test-3', testData)).toEqual({
       current: 1,
       win: 2,
       done: [0],
@@ -75,7 +75,7 @@ describe('retrieve and modify data', () => {
   })
   it('adds new data if missing', () => {
     expect(Object.keys(testData).length).toBe(3)
-    expect(getExerciseData('newData', testData)).toEqual({
+    expect(getExerciseUserData('newData', testData)).toEqual({
       current: 0,
       win: 0,
       done: [],

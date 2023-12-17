@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView/HomeView.vue'
-import { doesExerciseExist } from '@/data'
+import { getExerciseData } from '@/data'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +25,7 @@ router.beforeEach(to => {
     if (
       typeof category !== 'string' ||
       typeof exercise !== 'string' ||
-      !doesExerciseExist(category, exercise)
+      !getExerciseData(category, exercise)
     ) {
       return { name: 'home' }
     }

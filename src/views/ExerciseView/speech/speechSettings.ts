@@ -2,7 +2,7 @@ import { useStorage } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
 const defaultSettings = {
-  speed: 1,
+  speed: 0.7,
   speedPreview: 1,
   delay: true,
   voiceIndex: 0,

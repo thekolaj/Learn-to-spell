@@ -1,23 +1,23 @@
-export type ExerciseData = {
+export type ExerciseUserData = {
   current: number
   win: number
   done: number[]
 }
 
 export type UserData = {
-  [key: string]: ExerciseData
+  [key: string]: ExerciseUserData
 }
 
-function defaultExerciseDataFactory(): ExerciseData {
+function defaultExerciseUserDataFactory(): ExerciseUserData {
   return {
     current: 0,
     win: 0,
     done: [],
   }
 }
-export function getExerciseData(exercise: string, userData: UserData): ExerciseData {
+export function getExerciseUserData(exercise: string, userData: UserData): ExerciseUserData {
   if (!userData[exercise]) {
-    userData[exercise] = defaultExerciseDataFactory()
+    userData[exercise] = defaultExerciseUserDataFactory()
   }
   return userData[exercise]
 }
@@ -31,11 +31,11 @@ export function statsAsString(
   exerciseLength: number,
   userData: UserData,
 ) {
-  const exerciseData = userData[exercise]
-  const sentencesCompleted = exerciseData ? exerciseData.done.length : 0
+  const exerciseUserData = userData[exercise]
+  const sentencesCompleted = exerciseUserData ? exerciseUserData.done.length : 0
   let completion = completionAsString(sentencesCompleted, exerciseLength)
-  if (exerciseData?.win) {
-    completion = `🏆x${exerciseData.win} ${completion}`
+  if (exerciseUserData?.win) {
+    completion = `🏆x${exerciseUserData.win} ${completion}`
   }
   return completion
 }
