@@ -6,8 +6,10 @@ export const playPreview = ref(true)
 
 export function playPauseText(text: string): void {
   if (speechSynthesis.paused) {
+    playing.value = true
     speechSynthesis.resume()
   } else if (speechSynthesis.speaking) {
+    playing.value = false
     speechSynthesis.pause()
   } else {
     if (playPreview.value) {
@@ -33,7 +35,7 @@ function createUtterance(text: string, speed: number, delay: boolean = false) {
     playing.value = true
   }
   utterance.onend = () => {
-    playing.value = false
+    if (!speechSynthesis.pending) playing.value = false
   }
   return utterance
 }

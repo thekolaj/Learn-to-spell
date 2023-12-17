@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getExerciseData } from '@/data'
 import userData from '@/store/userData'
@@ -27,10 +27,16 @@ watchEffect(() => {
 })
 
 function playPauseButton() {
+  if (isAnswerSubmitted.value) return
   speechControls.playPauseText(currentExerciseData[currentExerciseUserData.current])
 }
 
+const playPauseButtonText = computed(() => {
+  return speechControls.playing.value ? 'Pause' : 'Play'
+})
+
 function submitAnswer() {
+  speechControls.stopText()
   const currentSentence = currentExerciseData[currentExerciseUserData.current]
   const isAnswerCorrect = userInput.value === currentSentence
 
@@ -52,12 +58,17 @@ function resetTest() {
 }
 
 function submitButton() {
-  speechControls.stopText()
   // TODO: add ExerciseCompleted test
   if (isAnswerSubmitted.value) resetTest()
   else if (speechControls.playPreview.value) playPauseButton()
   else submitAnswer()
 }
+
+const submitButtonText = computed(() => {
+  if (isAnswerSubmitted.value) return 'Next'
+  if (speechControls.playPreview.value) return 'Start'
+  return 'Submit'
+})
 
 function homeButton() {
   speechControls.stopText()
@@ -66,27 +77,35 @@ function homeButton() {
 </script>
 
 <template>
-  <button @click="homeButton()" type="button">Home</button>
-  <label for="text">Text Input:</label>
-  <textarea
+  <div
+    class="container"
     @keydown.enter.prevent="submitButton()"
     @keydown.tab.prevent="playPauseButton()"
-    v-model="userInput"
-    id="text"
-    cols="50"
-    rows="5"
-    autocomplete="off"
-    autocorrect="off"
-    autocapitalize="off"
-    spellcheck="false"
-  ></textarea>
-  <p>{{ resultsDisplay }}</p>
+    @keydown.esc.prevent="speechControls.stopText()"
+    tabindex="-1"
+  >
+    <button @click="homeButton()" type="button">Home</button>
+    <label for="text">Text Input:</label>
+    <textarea
+      v-model="userInput"
+      :disabled="isAnswerSubmitted"
+      id="text"
+      cols="50"
+      rows="5"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+    ></textarea>
+    <p>{{ resultsDisplay }}</p>
 
-  <div>
-    <button @click="submitButton()" type="button">Submit</button>
-    <button @click="playPauseButton()" type="button">Play</button>
-    <button @click="speechControls.stopText()" type="button">Stop</button>
+    <button @click="submitButton()" type="button">{{ submitButtonText }} "Enter"</button>
+    <button @click="playPauseButton()" type="button" :disabled="isAnswerSubmitted">
+      {{ playPauseButtonText }} "Tab"
+    </button>
+    <button @click="speechControls.stopText()" type="button">Stop "Esc"</button>
     <SpeechSettingModal />
-    <p>{{ speechControls.playing }}</p>
+
+    <p>{{ speechControls.playing.value ? 'Speech Playing' : 'Speech Stopped' }}</p>
   </div>
 </template>

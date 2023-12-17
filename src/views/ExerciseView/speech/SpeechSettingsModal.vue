@@ -17,8 +17,8 @@ function toggleModal() {
       class="modal-mask"
       tabindex="-1"
       @click.self="toggleModal()"
-      @keyup.enter="toggleModal()"
-      @keyup.esc="toggleModal()"
+      @keydown.enter.stop="toggleModal()"
+      @keydown.esc.stop="toggleModal()"
     >
       <div class="modal-container">
         <button class="close-btn" type="button" @click="toggleModal()">X</button>
