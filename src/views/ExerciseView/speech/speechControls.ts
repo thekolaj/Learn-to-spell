@@ -2,7 +2,13 @@ import { ref } from 'vue'
 import { speechSettings, voiceList } from './speechSettings'
 
 export const playing = ref(false)
-export const playPreview = ref(true)
+
+export function playTextWithPreview(text: string): void {
+  speechSynthesis.speak(createUtterance(text, speechSettings.value.speedPreview))
+  speechSynthesis.speak(
+    createUtterance(text, speechSettings.value.speed, speechSettings.value.delay),
+  )
+}
 
 export function playPauseText(text: string): void {
   if (speechSynthesis.paused) {
@@ -12,10 +18,6 @@ export function playPauseText(text: string): void {
     playing.value = false
     speechSynthesis.pause()
   } else {
-    if (playPreview.value) {
-      speechSynthesis.speak(createUtterance(text, speechSettings.value.speedPreview))
-      playPreview.value = false
-    }
     speechSynthesis.speak(
       createUtterance(text, speechSettings.value.speed, speechSettings.value.delay),
     )

@@ -21,6 +21,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/extensions': 'off',
     'no-param-reassign': 'off',
+    'no-alert': 'off',
   },
   settings: {
     // to make our custom @ alias resolvable by ESLint import rules

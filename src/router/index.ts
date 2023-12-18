@@ -11,6 +11,11 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/completed',
+      name: 'completed',
+      component: () => import('@/views/ExerciseView/ExerciseCompletedView.vue'),
+    },
+    {
       path: '/:category/:exercise',
       name: 'exercise',
       component: () => import('@/views/ExerciseView/ExerciseView.vue'),
@@ -27,6 +32,7 @@ router.beforeEach(to => {
       typeof exercise !== 'string' ||
       !getExerciseData(category, exercise)
     ) {
+      alert(`Exercise ${category}/${exercise} does not exist`)
       return { name: 'home' }
     }
   }

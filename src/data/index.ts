@@ -2,6 +2,7 @@ import easy from './categoryEasy.json'
 import medium from './categoryMedium.json'
 import difficult from './categoryDifficult.json'
 import misspelled from './categoryMisspelled.json'
+import test from './categoryTest.json'
 
 type Data = {
   [key: string]: {
@@ -16,8 +17,9 @@ export const data: Data = {
   medium,
   difficult,
   misspelled,
+  test,
 }
 
-export function getExerciseData(category: string, exercise: string) {
+export function getExerciseData(category: string, exercise: string): string[] | undefined {
   return data?.[category]?.content?.[exercise]
 }

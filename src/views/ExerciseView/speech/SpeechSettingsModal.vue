@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { speechSettings, voiceList } from './speechSettings'
+import { vFocus } from '../exerciseControls'
 
 const isModalVisible = ref(false)
 
@@ -32,7 +33,15 @@ function toggleModal() {
           v-model="speechSettings.speedPreview"
         />
         <label for="speed">Speed</label>
-        <input type="number" id="speed" min=".1" max="3" step=".1" v-model="speechSettings.speed" />
+        <input
+          type="number"
+          id="speed"
+          min=".1"
+          max="3"
+          step=".1"
+          v-model="speechSettings.speed"
+          v-focus
+        />
         <label for="delay">Delay</label>
         <input type="checkbox" id="delay" v-model="speechSettings.delay" />
         <label for="voices">Select a voice</label>
