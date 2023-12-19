@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { UserData } from './userDataUtils'
-import { completionAsString, statsAsString, getExerciseUserData } from './userDataUtils'
+import { statsAsString, getExerciseUserData } from './userDataUtils'
 
 describe('create strings', () => {
   const exerciseLength = 5
@@ -22,11 +22,6 @@ describe('create strings', () => {
     },
   }
 
-  it('creates basic string', () => {
-    expect(completionAsString(testData['test-1'].done.length, exerciseLength)).toBe('0/5')
-    expect(completionAsString(testData['test-2'].done.length, exerciseLength)).toBe('3/5')
-    expect(completionAsString(testData['test-3'].done.length, exerciseLength)).toBe('1/5')
-  })
   it('creates string with wins', () => {
     expect(statsAsString('test-1', exerciseLength, testData)).toBe('0/5')
     expect(statsAsString('test-2', exerciseLength, testData)).toBe('3/5')

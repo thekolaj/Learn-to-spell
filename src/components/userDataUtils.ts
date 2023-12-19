@@ -22,10 +22,6 @@ export function getExerciseUserData(exercise: string, userData: UserData): Exerc
   return userData[exercise]
 }
 
-export function completionAsString(sentencesCompleted: number, exerciseLength: number) {
-  return `${sentencesCompleted}/${exerciseLength}`
-}
-
 export function statsAsString(
   exercise: string | number,
   exerciseLength: number,
@@ -33,7 +29,7 @@ export function statsAsString(
 ) {
   const exerciseUserData = userData[exercise]
   const sentencesCompleted = exerciseUserData ? exerciseUserData.done.length : 0
-  let completion = completionAsString(sentencesCompleted, exerciseLength)
+  let completion = `${sentencesCompleted}/${exerciseLength}`
   if (exerciseUserData?.win) {
     completion = `🏆x${exerciseUserData.win} ${completion}`
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watchEffect } from 'vue'
+import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 import SpeechSettingModal from './speech/SpeechSettingsModal.vue'
 import { stopText } from './speech/speechControls'
@@ -9,21 +9,25 @@ import {
   playPauseButton,
   setupExercise,
   vFocus,
-} from './exerciseControls'
-import {
+  exercisesCompleted,
+  exerciseName,
   userInput,
   isAnswerSubmitted,
   resultsDisplay,
   submitButtonText,
   playPauseButtonText,
-} from './exerciseState'
+} from './exerciseControls'
 
 const route = useRoute()
 
-watchEffect(() => {
-  const { category, exercise } = route.params
-  setupExercise(category, exercise)
-})
+watch(
+  () => route.params.exercise,
+  () => {
+    const { category, exercise } = route.params
+    setupExercise(category, exercise)
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -34,8 +38,10 @@ watchEffect(() => {
     @keydown.esc.prevent="stopText()"
     tabindex="-1"
   >
-    <button @click="homeButton()" type="button">Home</button>
-    <label for="text">Text Input:</label>
+    <div class="title">
+      <h2>Exercise: {{ exerciseName }} {{ exercisesCompleted }}</h2>
+      <button @click="homeButton()" type="button">Home</button>
+    </div>
     <textarea
       ref="userInputElement"
       v-model="userInput"
@@ -49,14 +55,37 @@ watchEffect(() => {
       autocorrect="off"
       autocapitalize="off"
       spellcheck="false"
+      aria-label="text input"
+      placeholder="Write what you hear."
     ></textarea>
     <p>{{ resultsDisplay }}</p>
-
-    <button @click="submitButton()" type="button">{{ submitButtonText }} "Enter"</button>
-    <button @click="playPauseButton()" type="button" :disabled="isAnswerSubmitted">
-      {{ playPauseButtonText }} "Tab"
-    </button>
-    <button @click="stopText()" type="button">Stop "Esc"</button>
-    <SpeechSettingModal />
+    <div class="controls">
+      <button @click="submitButton()" type="button">
+        {{ submitButtonText }} <span>"Enter"</span>
+      </button>
+      <button @click="playPauseButton()" type="button" :disabled="isAnswerSubmitted">
+        {{ playPauseButtonText }} <span>"Tab"</span>
+      </button>
+      <button @click="stopText()" type="button">Stop <span>"Esc"</span></button>
+      <SpeechSettingModal />
+    </div>
   </div>
 </template>
+
+<style scoped>
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls > button {
+  display: flex;
+  justify-content: space-around;
+}
+</style>

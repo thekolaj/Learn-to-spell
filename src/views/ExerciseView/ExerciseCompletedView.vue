@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { exerciseName } from './exerciseState'
-import { vFocus } from './exerciseControls'
+import { vFocus, exerciseName } from './exerciseControls'
 </script>
 
 <template>
