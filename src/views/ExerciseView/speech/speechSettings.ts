@@ -14,3 +14,6 @@ speechSynthesis.onvoiceschanged = () => {
 }
 
 export const speechSettings = useStorage('learnToSpell.speechSettings', defaultSettings)
+
+export type VoiceList = typeof voiceList
+export type SpeechSettings = typeof speechSettings

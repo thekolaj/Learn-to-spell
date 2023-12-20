@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { ExerciseUserData } from '@/components/userDataUtils'
+import type { ExerciseUserData } from '@/store/userDataUtils'
 import { answeredCorrect, setNextSentence } from './dataControls'
 
 describe('Next sentence function', () => {

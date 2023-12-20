@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { data } from '@/data/'
-import { statsAsString } from '@/components/userDataUtils'
+import data from '@/data/'
 import userData from '@/store/userData'
+import { statsAsString } from '@/store/userDataUtils'
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView/HomeView.vue'
-import { getExerciseData } from '@/data'
+import HomeView from '@/views/HomeView.vue'
+import data from '@/data'
+import getExerciseData from '@/data/dataUtils'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,9 +12,9 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/completed',
+      path: '/completed/:exercise',
       name: 'completed',
-      component: () => import('@/views/ExerciseView/ExerciseCompletedView.vue'),
+      component: () => import('@/views/ExerciseCompletedView.vue'),
     },
     {
       path: '/:category/:exercise',
@@ -30,7 +31,7 @@ router.beforeEach(to => {
     if (
       typeof category !== 'string' ||
       typeof exercise !== 'string' ||
-      !getExerciseData(category, exercise)
+      !getExerciseData(data, category, exercise)
     ) {
       alert(`Exercise ${category}/${exercise} does not exist`)
       return { name: 'home' }
