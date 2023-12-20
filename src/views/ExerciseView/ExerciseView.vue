@@ -5,6 +5,7 @@ import data from '@/data'
 import userData from '@/store/userData'
 import { vFocus } from '@/components/utils'
 import SpeechSettingModal from './speech/SpeechSettingsModal.vue'
+import ResultsDisplay from './ResultsDisplay.vue'
 import exerciseSetup from './dataControls/dataControls'
 import { speechSettings, voiceList } from './speech/speechSettings'
 import useSpeech from './speech/useSpeechControls'
@@ -49,7 +50,11 @@ watch(
       aria-label="text input"
       placeholder="Write what you hear."
     ></textarea>
-    <div class="results" v-html="state.resultsDisplay"></div>
+    <ResultsDisplay
+      :submitted="state.isAnswerSubmitted"
+      :correct="state.isAnswerCorrect"
+      :results="state.diffResults"
+    />
     <div class="controls">
       <button @click="controls.submitButton()" type="button">
         {{ controls.submitButtonText.value }} <span>"Enter"</span>
@@ -78,18 +83,5 @@ watch(
 .controls > button {
   display: flex;
   justify-content: space-around;
-}
-
-.results > span {
-  background-color: var(--primary-neutral);
-  border-radius: 2px;
-}
-
-.correct {
-  background-color: var(--button-color);
-}
-
-.wrong {
-  background-color: var(--primary-bad);
 }
 </style>

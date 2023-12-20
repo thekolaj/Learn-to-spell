@@ -1,4 +1,5 @@
 import type { ExerciseUserData } from '@/store/userDataUtils'
+import type { Change } from 'diff'
 
 function createExerciseState(
   name: string,
@@ -12,14 +13,14 @@ function createExerciseState(
     isExerciseCompleted: false,
     isNewSentence: true,
     isAnswerSubmitted: false,
+    isAnswerCorrect: false,
     userInput: '',
-    resultsDisplay: 'Submit your answer',
+    diffResults: <Change[]>[],
 
     resetSentence() {
       this.isNewSentence = true
       this.isAnswerSubmitted = false
       this.userInput = ''
-      this.resultsDisplay = 'Submit your answer'
     },
   }
 }

@@ -44,19 +44,16 @@ export function answeredCorrect(exerciseUserData: ExerciseUserData, exerciseLeng
 }
 
 export function submitAnswer(stateValue: ExerciseState) {
-  const currentSentence = stateValue.exerciseData[stateValue.exerciseUserData.current]
-  const isAnswerCorrect = stateValue.userInput === currentSentence
-  const diff = diffWordsWithSpace(currentSentence, stateValue.userInput)
-  console.log(diff)
   stateValue.isAnswerSubmitted = true
-  if (isAnswerCorrect) {
-    stateValue.resultsDisplay = `Correct: ${currentSentence}`
+  const currentSentence = stateValue.exerciseData[stateValue.exerciseUserData.current]
+  stateValue.isAnswerCorrect = stateValue.userInput === currentSentence
+  stateValue.diffResults = diffWordsWithSpace(currentSentence, stateValue.userInput)
+  if (stateValue.isAnswerCorrect) {
     stateValue.isExerciseCompleted = answeredCorrect(
       stateValue.exerciseUserData,
       stateValue.exerciseData.length,
     )
   } else {
-    stateValue.resultsDisplay = `Wrong: ${currentSentence}`
     setNextSentence(stateValue.exerciseUserData, stateValue.exerciseData.length)
   }
 }
