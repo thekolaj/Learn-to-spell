@@ -1,4 +1,4 @@
-import { diffWordsWithSpace } from 'diff'
+import { diffWordsWithSpace, type Change } from 'diff'
 import { getExerciseUserData, type ExerciseUserData, type UserData } from '@/store/userDataUtils'
 import getExerciseData, { type Data } from '@/data/dataUtils'
 import createExerciseState, { type ExerciseState } from '../createExerciseState'
@@ -43,6 +43,19 @@ export function answeredCorrect(exerciseUserData: ExerciseUserData, exerciseLeng
   return false
 }
 
+function remodelDiffResults(results: Change[]): Change[] {
+  const newResults: Change[] = []
+  for (let i = 0; i < results.length; i += 1) {
+    const result = results[i]
+    if (result?.removed && results?.[i + 1]?.added) {
+      newResults.push(results[i + 1], { value: '=>' })
+      i += 1
+    }
+    newResults.push(result)
+  }
+  return newResults
+}
+
 export function submitAnswer(stateValue: ExerciseState) {
   stateValue.isAnswerSubmitted = true
   const currentSentence = stateValue.exerciseData[stateValue.exerciseUserData.current]
@@ -54,6 +67,7 @@ export function submitAnswer(stateValue: ExerciseState) {
       stateValue.exerciseData.length,
     )
   } else {
+    stateValue.diffResults = remodelDiffResults(stateValue.diffResults)
     setNextSentence(stateValue.exerciseUserData, stateValue.exerciseData.length)
   }
 }
