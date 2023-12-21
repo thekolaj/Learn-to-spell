@@ -15,6 +15,8 @@ function defaultExerciseUserDataFactory(): ExerciseUserData {
     done: [],
   }
 }
+
+/** Get exercise user data. If missing, create default */
 export function getExerciseUserData(exercise: string, userData: UserData): ExerciseUserData {
   if (!userData[exercise]) {
     userData[exercise] = defaultExerciseUserDataFactory()
@@ -22,6 +24,7 @@ export function getExerciseUserData(exercise: string, userData: UserData): Exerc
   return userData[exercise]
 }
 
+/** Example: "🏆x1 3/20" */
 export function statsAsString(
   exercise: string | number,
   exerciseLength: number,

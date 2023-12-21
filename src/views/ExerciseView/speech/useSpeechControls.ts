@@ -1,10 +1,12 @@
 import { reactive } from 'vue'
 import type { SpeechSettings, VoiceList } from './speechSettings'
 
-function useSpeechControls(speechSettings: SpeechSettings, voiceList: VoiceList) {
+export default function useSpeechControls(speechSettings: SpeechSettings, voiceList: VoiceList) {
   return reactive({
+    /** Track playback status in a reactive variable */
     playing: false,
 
+    /** First time when starting a new sentence, play text twice. */
     playTextWithPreview(text: string): void {
       speechSynthesis.speak(this.createUtterance(text, speechSettings.value.speedPreview))
       speechSynthesis.speak(
@@ -30,6 +32,7 @@ function useSpeechControls(speechSettings: SpeechSettings, voiceList: VoiceList)
       speechSynthesis.cancel()
     },
 
+    /** Passed to speechSynthesis.speak() to begin playback */
     createUtterance(text: string, speed: number, delay: boolean = false) {
       const utterance = new SpeechSynthesisUtterance()
       utterance.text = delay === true ? (utterance.text = text.replaceAll(' ', '! ')) : text
@@ -46,5 +49,4 @@ function useSpeechControls(speechSettings: SpeechSettings, voiceList: VoiceList)
   })
 }
 
-export default useSpeechControls
 export type SpeechControls = ReturnType<typeof useSpeechControls>

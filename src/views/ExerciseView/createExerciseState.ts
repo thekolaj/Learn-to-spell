@@ -1,7 +1,7 @@
 import type { ExerciseUserData } from '@/store/userDataUtils'
 import type { Change } from 'diff'
 
-function createExerciseState(
+export default function createExerciseState(
   name: string,
   exerciseData: string[],
   exerciseUserData: ExerciseUserData,
@@ -25,5 +25,4 @@ function createExerciseState(
   }
 }
 
-export default createExerciseState
 export type ExerciseState = ReturnType<typeof createExerciseState>

@@ -25,6 +25,7 @@ const router = createRouter({
   ],
 })
 
+/** Prevent navigation to non-existing exercise */
 router.beforeEach(to => {
   if (to.name === 'exercise') {
     const { category, exercise } = to.params

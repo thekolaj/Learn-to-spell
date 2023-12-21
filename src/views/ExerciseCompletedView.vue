@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { vFocus } from '@/components/utils'
+import vFocus from '@/components/utils'
 import { RouterLink } from 'vue-router'
 </script>
 

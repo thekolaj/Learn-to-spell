@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { vFocus } from '@/components/utils'
+import vFocus from '@/components/utils'
 import { speechSettings, voiceList } from './speechSettings'
 
 const isModalVisible = ref(false)

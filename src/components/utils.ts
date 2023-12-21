@@ -1,3 +1,2 @@
-export const vFocus = { mounted: (el: HTMLInputElement) => el.focus() }
-
-export function formatResults() {}
+/** Focus element on mount */
+export default { mounted: (el: HTMLInputElement) => el.focus() }

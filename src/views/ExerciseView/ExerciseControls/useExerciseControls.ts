@@ -1,10 +1,10 @@
 import { computed, type Ref } from 'vue'
 import router from '@/router'
-import type { SpeechControls } from './speech/useSpeechControls'
-import type { ExerciseState } from './createExerciseState'
-import { submitAnswer } from './dataControls/dataControls'
+import type { SpeechControls } from '../speech/useSpeechControls'
+import type { ExerciseState } from '../createExerciseState'
+import { submitAnswer } from '../dataControls/dataControls'
 
-export default (speech: SpeechControls, state: Ref<ExerciseState>) => {
+export default function useExerciseControls(speech: SpeechControls, state: Ref<ExerciseState>) {
   return {
     playPauseButtonText: computed(() => {
       return speech.playing ? 'Pause' : 'Play'
@@ -30,6 +30,7 @@ export default (speech: SpeechControls, state: Ref<ExerciseState>) => {
         speech.playPauseText(state.value.exerciseData[state.value.exerciseUserData.current])
       }
     },
+
     submitButton() {
       if (state.value.isExerciseCompleted) {
         router.push({ name: 'completed', params: { exercise: state.value.exerciseName } })
@@ -48,3 +49,5 @@ export default (speech: SpeechControls, state: Ref<ExerciseState>) => {
     },
   }
 }
+
+export type ExerciseControls = ReturnType<typeof useExerciseControls>

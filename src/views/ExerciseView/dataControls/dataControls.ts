@@ -13,6 +13,7 @@ function resetExercise(exerciseUserData: ExerciseUserData) {
   exerciseUserData.done = []
 }
 
+/** Set current sentence index to the next number that is not in the completed sentences list. */
 export function setNextSentence(exerciseUserData: ExerciseUserData, exerciseLength: number) {
   if (checkExerciseCompletion(exerciseUserData, exerciseLength)) {
     throw new Error('Cannot find next index. Completed sentences index list is full.')
@@ -31,6 +32,7 @@ export function setNextSentence(exerciseUserData: ExerciseUserData, exerciseLeng
   }
 }
 
+/** Set next sentence, adds current to completed. Resets exercise if all sentences are completed. */
 export function answeredCorrect(exerciseUserData: ExerciseUserData, exerciseLength: number) {
   if (!exerciseUserData.done.includes(exerciseUserData.current)) {
     exerciseUserData.done.push(exerciseUserData.current)
@@ -43,6 +45,7 @@ export function answeredCorrect(exerciseUserData: ExerciseUserData, exerciseLeng
   return false
 }
 
+/** Swap users incorrect word and original word places and add an arrow between them for clarity. */
 function remodelDiffResults(results: Change[]): Change[] {
   const newResults: Change[] = []
   for (let i = 0; i < results.length; i += 1) {
@@ -56,6 +59,7 @@ function remodelDiffResults(results: Change[]): Change[] {
   return newResults
 }
 
+/** Mark sentence as submitted. Generate results based on correctness. */
 export function submitAnswer(stateValue: ExerciseState) {
   stateValue.isAnswerSubmitted = true
   const currentSentence = stateValue.exerciseData[stateValue.exerciseUserData.current]
@@ -72,6 +76,7 @@ export function submitAnswer(stateValue: ExerciseState) {
   }
 }
 
+/** Exercise setup used when route URL changes. */
 export default function exerciseSetup(
   data: Data,
   userData: UserData,

@@ -3,13 +3,13 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import data from '@/data'
 import userData from '@/store/userData'
-import { vFocus } from '@/components/utils'
-import SpeechSettingModal from './speech/SpeechSettingsModal.vue'
+import vFocus from '@/components/utils'
+import ExerciseControls from './ExerciseControls/ExerciseControls.vue'
 import ResultsDisplay from './ResultsDisplay.vue'
 import exerciseSetup from './dataControls/dataControls'
 import { speechSettings, voiceList } from './speech/speechSettings'
 import useSpeech from './speech/useSpeechControls'
-import useExerciseControls from './useExerciseControls'
+import useExerciseControls from './ExerciseControls/useExerciseControls'
 
 const route = useRoute()
 const speech = useSpeech(speechSettings, voiceList)
@@ -25,8 +25,7 @@ watch(
 </script>
 
 <template>
-  <div
-    class="container"
+  <section
     @keydown.enter.prevent="controls.submitButton()"
     @keydown.tab.prevent="controls.playPauseButton()"
     @keydown.esc.prevent="speech.stopText()"
@@ -38,7 +37,6 @@ watch(
     </div>
     <textarea
       v-model="state.userInput"
-      :class="{ disabled: state.isAnswerSubmitted }"
       :readonly="state.isAnswerSubmitted"
       v-focus
       cols="50"
@@ -55,17 +53,8 @@ watch(
       :correct="state.isAnswerCorrect"
       :results="state.diffResults"
     />
-    <div class="controls">
-      <button @click="controls.submitButton()" type="button">
-        {{ controls.submitButtonText.value }} <span>"Enter"</span>
-      </button>
-      <button @click="controls.playPauseButton()" type="button" :disabled="state.isAnswerSubmitted">
-        {{ controls.playPauseButtonText.value }} <span>"Tab"</span>
-      </button>
-      <button @click="speech.stopText()" type="button">Stop <span>"Esc"</span></button>
-      <SpeechSettingModal />
-    </div>
-  </div>
+    <ExerciseControls :controls="controls" :state="state" :stopText="speech.stopText" />
+  </section>
 </template>
 
 <style scoped>
@@ -73,15 +62,5 @@ watch(
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-}
-
-.controls > button {
-  display: flex;
-  justify-content: space-around;
 }
 </style>
