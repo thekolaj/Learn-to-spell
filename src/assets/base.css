@@ -1,30 +1,30 @@
 :root {
-  --primary-light: #f7f7f7;
+  --primary-light: #e9e9e9;
   --primary-dark: #202128;
   --primary-good: #1a8e87;
   --secondary-good: #1e3136;
   --primary-highlight: #d79053;
   --secondary-highlight: #433937;
   --primary-bad: #eb3717;
-  --primary-neutral: #808080;
+  --primary-neutral: #afafaf;
   --x-large: 2rem;
   --v-large: 1.5rem;
   --large: 1rem;
   --medium: 0.5rem;
   --small: 0.2rem;
 
-  font-size: 10px;
+  font-size: 12px;
 }
 
 @media (width >= 400px) {
   :root {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
 @media (width >= 500px) {
   :root {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 

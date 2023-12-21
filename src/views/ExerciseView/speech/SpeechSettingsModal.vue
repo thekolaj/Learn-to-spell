@@ -23,39 +23,73 @@ function toggleModal() {
     >
       <div class="modal-container">
         <button class="close-btn" type="button" @click="toggleModal()">X</button>
-        <label for="preview-speed">Preview Speed</label>
-        <input
-          type="number"
-          id="preview-speed"
-          min=".1"
-          max="3"
-          step=".1"
-          v-model="speechSettings.speedPreview"
-        />
-        <label for="speed">Speed</label>
-        <input
-          type="number"
-          id="speed"
-          min=".1"
-          max="3"
-          step=".1"
-          v-model="speechSettings.speed"
-          v-focus
-        />
-        <label for="delay">Delay</label>
-        <input type="checkbox" id="delay" v-model="speechSettings.delay" />
-        <label for="voices">Select a voice</label>
-        <select id="voices" v-model="speechSettings.voiceIndex">
-          <option v-for="(voice, index) in voiceList" :key="voice.name" :value="index">
-            {{ voice.name }} ({{ voice.lang }})
-          </option>
-        </select>
+        <div>
+          <label for="preview-speed">Preview Speech Speed:</label>
+          <input
+            type="number"
+            id="preview-speed"
+            min=".1"
+            max="3"
+            step=".1"
+            v-model="speechSettings.speedPreview"
+          />
+        </div>
+        <div>
+          <label for="speed">Regular Speech Speed:</label>
+          <input
+            type="number"
+            id="speed"
+            min=".1"
+            max="3"
+            step=".1"
+            v-model="speechSettings.speed"
+            v-focus
+          />
+        </div>
+        <div>
+          <label for="delay">Add delay between words:</label>
+          <input type="checkbox" id="delay" v-model="speechSettings.delay" />
+        </div>
+        <div>
+          <label for="voices">Select a voice:</label>
+          <select id="voices" v-model="speechSettings.voiceIndex">
+            <option v-for="(voice, index) in voiceList" :key="voice.name" :value="index">
+              {{ voice.name }} ({{ voice.lang }})
+            </option>
+          </select>
+        </div>
       </div>
     </div>
   </Transition>
 </template>
 
 <style scoped>
+input {
+  font-size: var(--large);
+}
+
+input[type='number'] {
+  margin-left: 0.5rem;
+  width: 5rem;
+}
+
+input[type='checkbox'] {
+  margin-left: 2.2rem;
+  width: var(--large);
+  height: var(--large);
+  box-shadow: 0 0 0 2px var(--primary-good);
+}
+
+select {
+  font-size: 0.8rem;
+  display: block;
+}
+
+.modal-container > div {
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -71,6 +105,7 @@ function toggleModal() {
 .modal-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: var(--background-color);
   margin: auto;
   padding: 0.3rem 1.3rem 1.3rem;

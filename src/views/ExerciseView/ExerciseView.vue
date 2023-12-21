@@ -25,42 +25,60 @@ watch(
 </script>
 
 <template>
-  <section
+  <main
     @keydown.enter.prevent="controls.submitButton()"
     @keydown.tab.prevent="controls.playPauseButton()"
     @keydown.esc.prevent="speech.stopText()"
     tabindex="-1"
   >
-    <div class="title">
-      <h2>Exercise: {{ state.exerciseName }} {{ controls.completionText.value }}</h2>
-      <button @click="controls.homeButton()" type="button">Home</button>
+    <div class="exercise-container">
+      <h2>
+        Exercise: {{ state.exerciseName }}<span>Correct: {{ controls.completionText.value }}</span>
+      </h2>
+      <textarea
+        v-model="state.userInput"
+        :readonly="state.isAnswerSubmitted"
+        v-focus
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-label="text input"
+        placeholder="Write what you hear."
+      ></textarea>
+      <ResultsDisplay
+        :submitted="state.isAnswerSubmitted"
+        :correct="state.isAnswerCorrect"
+        :results="state.diffResults"
+      />
     </div>
-    <textarea
-      v-model="state.userInput"
-      :readonly="state.isAnswerSubmitted"
-      v-focus
-      cols="50"
-      rows="5"
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="off"
-      spellcheck="false"
-      aria-label="text input"
-      placeholder="Write what you hear."
-    ></textarea>
-    <ResultsDisplay
-      :submitted="state.isAnswerSubmitted"
-      :correct="state.isAnswerCorrect"
-      :results="state.diffResults"
-    />
     <ExerciseControls :controls="controls" :state="state" :stopText="speech.stopText" />
-  </section>
+  </main>
 </template>
 
 <style scoped>
-.title {
+.exercise-container {
   width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
   display: flex;
   justify-content: space-between;
+  padding: 0 0.5rem;
+}
+
+textarea {
+  font-size: var(--x-large);
+  width: 100%;
+  height: 11rem;
+  background-color: var(--primary-light);
+}
+
+textarea[readonly] {
+  background-color: var(--primary-neutral);
 }
 </style>

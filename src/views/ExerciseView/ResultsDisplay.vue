@@ -26,7 +26,12 @@ defineProps<{
 
 <style scoped>
 div {
-  margin: 1rem;
+  text-align: center;
+  width: 100%;
+  margin: 1rem 0.6rem;
+  line-height: 2.5rem;
+  font-size: var(--v-large);
+  padding: 0 0.5rem;
   white-space: pre-wrap;
 }
 

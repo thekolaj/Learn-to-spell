@@ -13,14 +13,12 @@ const toggleDark = useToggle(isDark)
     </button>
     <h1>Learn to Spell</h1>
   </header>
-  <main>
-    <RouterView />
-  </main>
+  <RouterView />
 </template>
 
 <style scoped>
 .mode {
-  margin-left: auto;
+  margin: 1rem 10% 0 auto;
   padding: 0.3rem;
   font-size: var(--large);
 }
