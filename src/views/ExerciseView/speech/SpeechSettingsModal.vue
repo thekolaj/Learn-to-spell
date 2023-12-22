@@ -54,6 +54,7 @@ function toggleModal() {
         <div v-if="!isMobileBrowser">
           <label for="voices">Select a voice:</label>
           <select id="voices" v-model="speechSettings.voiceIndex">
+            <option :value="null">Default</option>
             <option v-for="(voice, index) in voiceList" :key="voice.name" :value="index">
               {{ voice.name }} ({{ voice.lang }})
             </option>

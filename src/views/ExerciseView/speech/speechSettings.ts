@@ -5,7 +5,7 @@ const defaultSettings = {
   speed: 0.8,
   speedPreview: 1,
   delay: true,
-  voiceIndex: 0,
+  voiceIndex: <number | null>null,
 }
 
 /** speechSynthesis takes a bit to load when you first load the app.
