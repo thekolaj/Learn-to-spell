@@ -1,6 +1,6 @@
 {
   "name": "Easy",
-  "description": "Beginner friendly.",
+  "description": "Beginner friendly sentences.",
   "content": {
     "easy-1": [
       "I like to eat apples.",
@@ -67,6 +67,57 @@
       "She reads a book every night.",
       "We hike in the mountains.",
       "The sunflowers face the sun."
+    ],
+    "easy-4": [
+      "I enjoy playing soccer in the park.",
+      "The moon is visible in the night sky.",
+      "My favorite fruit is strawberries.",
+      "We swim in the pool during summer.",
+      "He bakes pies on special occasions.",
+      "The hills are covered in green grass.",
+      "I wear sunglasses in the sunlight.",
+      "She plays the piano very skillfully.",
+      "Birds sing sweetly in the morning.",
+      "I like to read comics before bed.",
+      "The stream flows gently downhill.",
+      "I have a yellow scooter.",
+      "We grow vegetables in our backyard.",
+      "He captures moments with his camera.",
+      "I have lunch at twelve o'clock."
+    ],
+    "easy-5": [
+      "I ride my scooter to the school.",
+      "The snow makes the trees white.",
+      "She dances in the school auditorium.",
+      "We build puzzles as a family.",
+      "The cat purrs softly at night.",
+      "I wear a green raincoat.",
+      "He tells jokes that make everyone laugh.",
+      "I have a soft, blue pillow.",
+      "The pond is calm and peaceful.",
+      "She combs her hair gently.",
+      "I like to bake banana bread.",
+      "The butterfly flutters around a flower.",
+      "We stroll along the riverbank.",
+      "I drink juice with ice cubes.",
+      "The rainbow appears after a rain shower."
+    ],
+    "easy-6": [
+      "I bike to the library after school.",
+      "The sun makes the flowers bloom.",
+      "He jumps in excitement.",
+      "We watch movies on weekends.",
+      "The dog barks loudly at night.",
+      "I wear a purple jacket.",
+      "She sings songs that make us happy.",
+      "I have a cozy, red blanket.",
+      "The lake is clear and reflective.",
+      "She brushes her hair neatly.",
+      "I like to bake blueberry muffins.",
+      "The dragonfly lands on a leaf.",
+      "We walk around the neighborhood.",
+      "I drink tea with lemon.",
+      "The rainbow appears after the rain stops."
     ]
   }
 }

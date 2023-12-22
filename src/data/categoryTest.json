@@ -1,7 +1,7 @@
 {
   "name": "Test",
-  "description": "Very easy and short to test functionality like completing a test.",
+  "description": "Simple words to test functionality, like completing a test.",
   "content": {
-    "test": ["Hello World", "Easy", "Sausage"]
+    "test": ["Hello World.", "Easy.", "Sausage."]
   }
 }
