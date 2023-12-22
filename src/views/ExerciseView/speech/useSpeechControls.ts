@@ -37,7 +37,7 @@ export default function useSpeechControls(speechSettings: SpeechSettings, voiceL
       const utterance = new SpeechSynthesisUtterance()
       utterance.text = delay === true ? (utterance.text = text.replaceAll(' ', '! ')) : text
       utterance.rate = speed
-      if (speechSettings.value.voiceIndex) {
+      if (speechSettings.value.voiceIndex !== null) {
         utterance.voice = voiceList.value[speechSettings.value.voiceIndex]
       }
       utterance.onstart = () => {
