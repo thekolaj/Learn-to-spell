@@ -12,9 +12,10 @@ import useSpeech from './speech/useSpeechControls'
 import useExerciseControls from './ExerciseControls/useExerciseControls'
 
 const route = useRoute()
+const textAreaElement = ref<HTMLInputElement | null>(null)
 const speech = useSpeech(speechSettings, voiceList)
 const state = ref(exerciseSetup(data, userData, route.params))
-const controls = useExerciseControls(speech, state)
+const controls = useExerciseControls(speech, state, textAreaElement)
 
 watch(
   () => route.params.exercise,
@@ -37,6 +38,7 @@ watch(
       </h2>
       <textarea
         v-model="state.userInput"
+        ref="textAreaElement"
         :readonly="state.isAnswerSubmitted"
         v-focus
         autocomplete="off"
@@ -44,7 +46,7 @@ watch(
         autocapitalize="off"
         spellcheck="false"
         aria-label="text input"
-        placeholder="Write what you hear."
+        placeholder="Write what you hear"
       ></textarea>
       <ResultsDisplay
         :submitted="state.isAnswerSubmitted"

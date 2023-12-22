@@ -4,7 +4,11 @@ import type { SpeechControls } from '../speech/useSpeechControls'
 import type { ExerciseState } from '../createExerciseState'
 import { submitAnswer } from '../dataControls/dataControls'
 
-export default function useExerciseControls(speech: SpeechControls, state: Ref<ExerciseState>) {
+export default function useExerciseControls(
+  speech: SpeechControls,
+  state: Ref<ExerciseState>,
+  textAreaElement: Ref<HTMLInputElement | null>,
+) {
   return {
     playPauseButtonText: computed(() => {
       return speech.playing ? 'Pause' : 'Play'
@@ -29,6 +33,7 @@ export default function useExerciseControls(speech: SpeechControls, state: Ref<E
       } else {
         speech.playPauseText(state.value.exerciseData[state.value.exerciseUserData.current])
       }
+      textAreaElement.value?.focus()
     },
 
     submitButton() {
