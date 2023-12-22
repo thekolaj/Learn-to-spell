@@ -12,6 +12,11 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/instructions',
+      name: 'instructions',
+      component: () => import('@/views/InstructionsView.vue'),
+    },
+    {
       path: '/completed/:exercise',
       name: 'completed',
       component: () => import('@/views/ExerciseCompletedView.vue'),
