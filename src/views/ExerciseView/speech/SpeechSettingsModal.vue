@@ -4,6 +4,7 @@ import vFocus from '@/components/utils'
 import { speechSettings, voiceList } from './speechSettings'
 
 const isModalVisible = ref(false)
+const isMobileBrowser = /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i.test(navigator.userAgent)
 
 function toggleModal() {
   isModalVisible.value = !isModalVisible.value
@@ -50,7 +51,7 @@ function toggleModal() {
           <label for="delay">Add delay between words:</label>
           <input type="checkbox" id="delay" v-model="speechSettings.delay" />
         </div>
-        <div>
+        <div v-if="!isMobileBrowser">
           <label for="voices">Select a voice:</label>
           <select id="voices" v-model="speechSettings.voiceIndex">
             <option v-for="(voice, index) in voiceList" :key="voice.name" :value="index">
