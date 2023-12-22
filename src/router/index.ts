@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import data from '@/data'
 import getExerciseData from '@/data/dataUtils'
+import error from '@/store/error'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,7 +40,7 @@ router.beforeEach(to => {
       typeof exercise !== 'string' ||
       !getExerciseData(data, category, exercise)
     ) {
-      alert(`Exercise ${category}/${exercise} does not exist`)
+      error.value = `Exercise ${category}/${exercise} does not exist`
       return { name: 'home' }
     }
   }

@@ -33,6 +33,7 @@
       </li>
       <li>You can add a small delay between words for regular speech playback.</li>
       <li>This delay might vary based on your OS and Browser.</li>
+      <li>Some mobile devices might not support pausing the speech.</li>
     </ul>
   </main>
 </template>
