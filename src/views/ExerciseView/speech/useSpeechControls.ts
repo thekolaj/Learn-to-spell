@@ -22,9 +22,6 @@ export default function useSpeechControls(speechSettings: SpeechSettings, voiceL
         this.playing = false
         speechSynthesis.pause()
       } else {
-        // Clears the queue before speaking.
-        // A workaround for android bug where paused property does not update.
-        speechSynthesis.cancel()
         speechSynthesis.speak(
           this.createUtterance(text, speechSettings.value.speed, speechSettings.value.delay),
         )
