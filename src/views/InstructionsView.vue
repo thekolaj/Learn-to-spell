@@ -48,10 +48,19 @@
       <li>This delay might vary based on your OS and Browser.</li>
       <li><span class="highlight">!Android:</span> Pause feature is not properly supported.</li>
     </ul>
+    <div class="contact">
+      Contact:
+      <a href="mailto: kolajonline@gmail.com">kolajonline@gmail.com</a>
+    </div>
   </main>
 </template>
 
 <style scoped>
+main {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
 h2,
 h3 {
   text-decoration: underline;
@@ -64,6 +73,22 @@ h3 {
 
 p {
   margin: 0 5%;
+}
+
+ul {
+  align-self: flex-start;
+}
+
+.contact {
+  font-size: var(--v-large);
+  color: var(--primary-good);
+  margin: 1rem;
+}
+
+.contact > a {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .highlight {
