@@ -1,13 +1,3 @@
-<style>
-h3 {
-    color: #1a8e87;
-}
-
-.highlight {
-    color: #d79053;
-}
-</style>
-
 <h2>Try it out at: <a href="https://thekolaj.github.io/Learn-to-spell/"></a>https://thekolaj.github.io/Learn-to-spell/</h2>
 
 <h2>Instructions</h2>
