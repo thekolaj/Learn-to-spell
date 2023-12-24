@@ -22,7 +22,10 @@ export default function useExerciseControls(
     }),
 
     completionText: computed(() => {
-      return `${state.value.exerciseUserData.done.length}/${state.value.exerciseData.length}`
+      const sentencesCompleted = state.value.isExerciseCompleted
+        ? state.value.exerciseData.length
+        : state.value.exerciseUserData.done.length
+      return `${sentencesCompleted}/${state.value.exerciseData.length}`
     }),
 
     playPauseButton() {
