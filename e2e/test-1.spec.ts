@@ -1,0 +1,20 @@
+import { test, expect } from '@playwright/test'
+
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:5173/')
+  await expect(page.getByRole('heading', { name: 'Learn to Spell' })).toBeVisible()
+  await page.getByRole('link', { name: 'Instructions' }).click()
+  await expect(page.getByRole('heading', { name: 'Instructions' })).toBeVisible()
+  await page.getByRole('link', { name: 'Home' }).click()
+  await expect(page.getByRole('link', { name: 'easy-1' })).toBeVisible()
+  await page.getByRole('link', { name: 'easy-1' }).click()
+  await expect(page.getByPlaceholder('Write what you hear')).toBeFocused()
+  await page.getByRole('button', { name: 'Start "Enter"' }).click()
+  await expect(page.getByText('Submit your answer.')).toBeVisible()
+  await page.getByRole('button', { name: 'Submit "Enter"' }).click()
+  await expect(page.getByText('Wrong:')).toBeVisible()
+  await page.getByRole('button', { name: 'Next "Enter"' }).click()
+  await expect(page.getByRole('button', { name: 'Start "Enter"' })).toBeVisible()
+  await page.getByRole('button', { name: 'Speech Settings' }).click()
+  await expect(page.getByLabel('Preview Speech Speed:')).toHaveValue('1')
+})
