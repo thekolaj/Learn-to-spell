@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Yatra One
+- Font Author: Copyright 2014 The Yatra Project Authors.
+- Font Source: http://fonts.gstatic.com/s/yatraone/v14/C8ch4copsHzj8p7NaF0xw1OBbRDvXw.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
