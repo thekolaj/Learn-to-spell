@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, onBeforeRouteLeave } from 'vue-router'
 import data from '@/data'
 import userData from '@/store/userData'
 import vFocus from '@/components/utils'
@@ -23,6 +23,10 @@ watch(
     state.value = exerciseSetup(data, userData, route.params)
   },
 )
+
+onBeforeRouteLeave(() => {
+  speech.stopText()
+})
 </script>
 
 <template>

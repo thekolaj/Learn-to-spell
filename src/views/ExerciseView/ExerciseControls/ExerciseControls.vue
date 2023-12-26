@@ -24,9 +24,10 @@ defineProps<{
     </button>
     <button @click="stopText()" type="button">Stop <span>"Esc"</span></button>
     <SpeechSettingModal />
-    <button @click="controls.homeButton()" type="button">Back to Title</button>
+    <button @click="$router.push({ name: 'home' })" type="button">Back to Title</button>
   </div>
 </template>
+
 <style scoped>
 div {
   display: flex;

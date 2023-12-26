@@ -50,11 +50,6 @@ export default function useExerciseControls(
         submitAnswer(state.value)
       }
     },
-
-    homeButton() {
-      speech.stopText()
-      router.push({ name: 'home' })
-    },
   }
 }
 
