@@ -30,7 +30,7 @@ function toggleModal() {
             type="number"
             id="preview-speed"
             min=".1"
-            max="3"
+            max="2"
             step=".1"
             v-model="speechSettings.speedPreview"
           />
@@ -41,7 +41,7 @@ function toggleModal() {
             type="number"
             id="speed"
             min=".1"
-            max="3"
+            max="2"
             step=".1"
             v-model="speechSettings.speed"
             v-focus
@@ -56,7 +56,7 @@ function toggleModal() {
           <select id="voices" v-model="speechSettings.voiceIndex">
             <option :value="null">Default</option>
             <option v-for="(voice, index) in voiceList" :key="voice.name" :value="index">
-              {{ voice.name }} ({{ voice.lang }})
+              {{ voice.name }}
             </option>
           </select>
         </div>
