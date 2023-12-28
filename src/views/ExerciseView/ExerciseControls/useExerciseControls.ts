@@ -43,8 +43,10 @@ export default function useExerciseControls(
       if (state.value.isExerciseCompleted) {
         router.push({ name: 'completed', params: { exercise: state.value.exerciseName } })
       }
-      if (state.value.isAnswerSubmitted) state.value.resetSentence()
-      else if (state.value.isNewSentence) this.playPauseButton()
+      if (state.value.isAnswerSubmitted) {
+        state.value.resetSentence()
+        this.playPauseButton()
+      } else if (state.value.isNewSentence) this.playPauseButton()
       else {
         speech.stopText()
         submitAnswer(state.value)
