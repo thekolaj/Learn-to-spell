@@ -1,5 +1,9 @@
 import { diffWordsWithSpace, type Change } from 'diff'
-import { getExerciseUserData, type ExerciseUserData, type UserData } from '@/store/userDataUtils'
+import {
+  getOrCreateExerciseUserData,
+  type ExerciseUserData,
+  type UserData,
+} from '@/store/userDataUtils'
 import getExerciseData, { type Data } from '@/data/dataUtils'
 import createExerciseState, { type ExerciseState } from '../createExerciseState'
 
@@ -91,7 +95,11 @@ export default function exerciseSetup(
   if (typeof category === 'string' && typeof exercise === 'string') {
     const exerciseData = getExerciseData(data, category, exercise)
     if (exerciseData) {
-      return createExerciseState(exercise, exerciseData, getExerciseUserData(exercise, userData))
+      return createExerciseState(
+        exercise,
+        exerciseData,
+        getOrCreateExerciseUserData(exercise, userData),
+      )
     }
   }
   throw new Error('Exercise not found.')
