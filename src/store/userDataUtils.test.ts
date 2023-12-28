@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import type { UserData } from './userDataUtils'
-import { statsAsString, getExerciseUserData } from './userDataUtils'
+import { statsAsString, getOrCreateExerciseUserData } from './userDataUtils'
 
-describe('create strings', () => {
+describe('statsAsString function', () => {
   const exerciseLength = 5
   const testData: UserData = {
     'test-1': {
@@ -22,12 +22,12 @@ describe('create strings', () => {
     },
   }
 
-  it('creates string with wins', () => {
+  it('creates string, includes exercise completion count (wins) when available', () => {
     expect(statsAsString('test-1', exerciseLength, testData)).toBe('0/5')
     expect(statsAsString('test-2', exerciseLength, testData)).toBe('3/5')
     expect(statsAsString('test-3', exerciseLength, testData)).toBe('🏆x2 1/5')
   })
-  it('creates string with missing data', () => {
+  it('creates string when data is missing', () => {
     expect(statsAsString(1, exerciseLength, testData)).toBe('0/5')
     expect(statsAsString('thisDoesNotExist', exerciseLength, testData)).toBe('0/5')
   })
@@ -52,17 +52,17 @@ describe('retrieve and modify data', () => {
     },
   }
   it('returns existing exercise user data', () => {
-    expect(getExerciseUserData('test-1', testData)).toEqual({
+    expect(getOrCreateExerciseUserData('test-1', testData)).toEqual({
       current: 4,
       win: 0,
       done: [],
     })
-    expect(getExerciseUserData('test-2', testData)).toEqual({
+    expect(getOrCreateExerciseUserData('test-2', testData)).toEqual({
       current: 0,
       win: 0,
       done: [1, 2, 4],
     })
-    expect(getExerciseUserData('test-3', testData)).toEqual({
+    expect(getOrCreateExerciseUserData('test-3', testData)).toEqual({
       current: 1,
       win: 2,
       done: [0],
@@ -70,7 +70,7 @@ describe('retrieve and modify data', () => {
   })
   it('adds new data if missing', () => {
     expect(Object.keys(testData).length).toBe(3)
-    expect(getExerciseUserData('newData', testData)).toEqual({
+    expect(getOrCreateExerciseUserData('newData', testData)).toEqual({
       current: 0,
       win: 0,
       done: [],

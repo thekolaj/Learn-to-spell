@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { ExerciseUserData } from '@/store/userDataUtils'
 import { answeredCorrect, setNextSentence } from './dataControls'
 
-describe('Next sentence function', () => {
+describe('setNextSentence function', () => {
   const exerciseLength = 5
   it('loops through new empty exercise', () => {
     const exerciseUserData: ExerciseUserData = {
@@ -50,7 +50,7 @@ describe('Next sentence function', () => {
   })
 })
 
-describe('correct answer function', () => {
+describe('answerCorrect function', () => {
   const exerciseUserData = {
     current: 0,
     win: 0,

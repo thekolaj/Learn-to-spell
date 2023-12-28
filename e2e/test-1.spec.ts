@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('test', async ({ page }) => {
+test('go through the whole app', async ({ page }) => {
   await page.goto('http://localhost:5173/')
   await expect(page.getByRole('heading', { name: 'Learn to Spell' })).toBeVisible()
   await page.getByRole('link', { name: 'Instructions' }).click()
