@@ -2,7 +2,7 @@ import easy from './categoryEasy.json'
 import medium from './categoryMedium.json'
 import difficult from './categoryDifficult.json'
 import misspelled from './categoryMisspelled.json'
-import test from './categoryTest.json'
+// import test from './categoryTest.json'
 import type { Data } from './dataUtils'
 
 export default <Data>{
@@ -10,5 +10,4 @@ export default <Data>{
   medium,
   difficult,
   misspelled,
-  test,
 }
