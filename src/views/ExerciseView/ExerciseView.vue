@@ -79,7 +79,7 @@ h2 {
 
 textarea {
   font-size: var(--x-large);
-  width: 100%;
+  width: 98%;
   height: 11rem;
   background-color: var(--primary-light);
 }
